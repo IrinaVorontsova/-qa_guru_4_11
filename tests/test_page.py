@@ -35,7 +35,7 @@ class TestPage:
 
         with allure.step("Transmitted user data"):
             registration = RegistrationPage(browser)
-            registration.registration_user(user)
+            registration.registration_user(user, browser)
 
         with allure.step("Compare transmitted and real data"):
             registration.assert_saved_form(user, browser), \

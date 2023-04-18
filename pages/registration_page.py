@@ -81,13 +81,13 @@ class RegistrationPage:
         self.submit.perform(command.js.click)
         return
 
-    def registration_user(self, user):
+    def registration_user(self, user, browser):
         self.set_first_name(user.first_name)
         self.set_last_name(user.last_name)
         self.set_email(user.email)
         self.set_gender(user.gender)
         self.set_phone(user.phone_number)
-        self.set_date_birth()
+        self.set_date_birth(browser)
         self.set_hobby_one(user.interests)
         self.set_hobby_two(user.hobby)
         self.set_photo(user.photo_path)
