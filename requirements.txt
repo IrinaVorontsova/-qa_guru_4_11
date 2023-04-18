@@ -1,3 +1,5 @@
 pytest
 allure-pytest
 selene>=2.0.0b4
+webdriver-manager==3.8.5
+python-dotenv==1.0.0

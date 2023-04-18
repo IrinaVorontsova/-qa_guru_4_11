@@ -1,1 +1,1 @@
-# -qa_guru_4_11
+# -qa_guru_4_11 for jenkins

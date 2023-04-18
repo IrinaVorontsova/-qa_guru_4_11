@@ -1,12 +1,12 @@
 import os
 
-from selene.support.shared import browser
+#from selene.support.shared import browser
 from locators.page_locators import PageLocators
 from selene import be, have, command
 
 
 class RegistrationPage:
-    def __init__(self):
+    def __init__(self, browser):
         self.first_name = browser.element(PageLocators.first_name)
         self.last_name = browser.element(PageLocators.last_name)
         self.email = browser.element(PageLocators.email)
@@ -44,7 +44,7 @@ class RegistrationPage:
         self.phone.should(be.blank).type(phone)
         return
 
-    def set_date_birth(self):
+    def set_date_birth(self, browser):
         browser.element(PageLocators.date_birth_field).click()
 
         browser.element(PageLocators.date_birth_month).click()
@@ -97,7 +97,7 @@ class RegistrationPage:
         self.click_submit()
         return
 
-    def assert_saved_form(self, user):
+    def assert_saved_form(self, user, browser):
         name = user.first_name + ' ' + user.last_name
         birthday = user.birth_day + ' ' + user.birth_month + ',' + user.birth_year
         state_city = user.state + ' ' + user.city
