@@ -11,9 +11,11 @@ class TestPage:
         with allure.step("Set test UTL"):
             return 'https://demoqa.com/automation-practice-form'
 
-    def test_form(self, browser):
+    def test_form(self, driver_browser):
+        registration = RegistrationPage(driver_browser)
+
         with allure.step("Open URL"):
-            browser.open(TestPage.set_url())
+            driver_browser.open(TestPage.set_url())
 
         with allure.step("Set user data"):
             user = FormRegistration(
@@ -34,9 +36,9 @@ class TestPage:
             )
 
         with allure.step("Transmitted user data"):
-            registration = RegistrationPage(browser)
-            registration.registration_user(user, browser)
+
+            registration.registration_user(user, driver_browser)
 
         with allure.step("Compare transmitted and real data"):
-            registration.assert_saved_form(user, browser), \
+            registration.assert_saved_form(user, driver_browser), \
                 "Some field was not corrected"
