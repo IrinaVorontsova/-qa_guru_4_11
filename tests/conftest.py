@@ -24,7 +24,7 @@ def load_env():
 
 
 @pytest.fixture(scope='function')
-def driver_browser(request):
+def setup_browser(request):
     browser_version = request.config.getoption('--browser_version')
     browser_version = browser_version if browser_version != "" else DEFAULT_BROWSER_VERSION
     options = Options()
@@ -45,13 +45,12 @@ def driver_browser(request):
         command_executor=f"https://{login}:{password}@selenoid.autotests.cloud/wd/hub",
         options=options
     )
-    driver_browser = Browser(Config(driver))
+    browser = Browser(Config(driver))
 
-    yield driver_browser
+    yield browser
 
-    attach.add_html(driver_browser)
-    attach.add_screenshot(driver_browser)
-    attach.add_logs(driver_browser)
-    attach.add_video(driver_browser)
-    driver_browser.quit()
-
+    attach.add_html(browser)
+    attach.add_screenshot(browser)
+    attach.add_logs(browser)
+    attach.add_video(browser)
+    browser.quit()

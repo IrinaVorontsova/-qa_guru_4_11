@@ -11,8 +11,8 @@ class TestPage:
         with allure.step("Set test UTL"):
             return 'https://demoqa.com/automation-practice-form'
 
-    def test_form(self, driver_browser):
-        browser = driver_browser
+    def test_form(self, setup_browser):
+        browser = setup_browser
 
         registration = RegistrationPage(browser)
 
