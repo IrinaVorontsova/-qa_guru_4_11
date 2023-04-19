@@ -1,5 +1,5 @@
-pytest
-allure-pytest
+pytest==7.3.1
+allure-pytest==2.13.1
 selene>=2.0.0b4
-webdriver-manager==3.8.5
-python-dotenv==1.0.0
+webdriver-manager==3.8.6
+python-dotenv
