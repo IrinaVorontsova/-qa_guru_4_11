@@ -1,6 +1,5 @@
 import os
 
-#from selene.support.shared import browser
 from locators.page_locators import PageLocators
 from selene import be, have, command
 
