@@ -21,7 +21,7 @@ def pytest_addoption(parser):
     def load_env():
         load_dotenv()
 
-    @pytest.fixture
+    @pytest.fixture(scope='session', autouse=True)
     def setup_browser(set_selenoid):
         config.window_width = 1920
         config.window_height = 1080
@@ -35,7 +35,7 @@ def pytest_addoption(parser):
 
         browser.quit()
 
-    @pytest.fixture
+    @pytest.fixture(scope='session', autouse=True)
     def set_selenoid():
         options = Options()
         browser_version = config.getoption('--browser_version')
