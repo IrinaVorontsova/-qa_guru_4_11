@@ -7,7 +7,8 @@ from pages.registration_page import RegistrationPage
 class TestPage:
 
     def test_form(self, setup_browser):
-        registration = RegistrationPage(setup_browser)
+        with allure.step("Initialize form page"):
+            registration = RegistrationPage(setup_browser)
 
         with allure.step("Open URL"):
             setup_browser.open('https://demoqa.com/automation-practice-form')
