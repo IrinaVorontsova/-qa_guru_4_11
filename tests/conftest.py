@@ -24,7 +24,20 @@ def load_env():
 
 
 @pytest.fixture(scope='function')
-def setup_browser(request):
+def setup_browser(set_driver):
+
+    browser = Browser(Config(set_driver))
+
+    yield browser
+
+    attach.add_html(browser)
+    attach.add_screenshot(browser)
+    attach.add_logs(browser)
+    attach.add_video(browser)
+    browser.quit()
+
+@pytest.fixture(scope='function')
+def set_driver(request):
     browser_version = request.config.getoption('--browser_version')
     browser_version = browser_version if browser_version != "" else DEFAULT_BROWSER_VERSION
     options = Options()
@@ -41,16 +54,7 @@ def setup_browser(request):
     login = os.getenv('LOGIN')
     password = os.getenv('PASSWORD')
 
-    driver = webdriver.Remote(
+    return webdriver.Remote(
         command_executor=f"https://{login}:{password}@selenoid.autotests.cloud/wd/hub",
         options=options
     )
-    browser = Browser(Config(driver))
-
-    yield browser
-
-    attach.add_html(browser)
-    attach.add_screenshot(browser)
-    attach.add_logs(browser)
-    attach.add_video(browser)
-    browser.quit()
