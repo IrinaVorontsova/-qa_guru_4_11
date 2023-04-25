@@ -6,14 +6,9 @@ from pages.registration_page import RegistrationPage
 
 class TestPage:
 
-    URL = 'https://demoqa.com/automation-practice-form'
-
     def test_form(self, setup_browser):
         browser = setup_browser
         registration = RegistrationPage(browser)
-
-        with allure.step("Open URL"):
-            browser.open(TestPage.URL)
 
         with allure.step("Set user data"):
             user = FormRegistration(
