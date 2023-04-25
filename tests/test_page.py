@@ -9,6 +9,9 @@ class TestPage:
     def test_form(self, setup_browser):
         registration = RegistrationPage(setup_browser)
 
+        with allure.step("Open URL"):
+            setup_browser.open('https://demoqa.com/automation-practice-form')
+
         with allure.step("Set user data"):
             user = FormRegistration(
                 first_name='Антон',
