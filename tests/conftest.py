@@ -28,7 +28,7 @@ def setup_browser(set_driver):
 
     browser = Browser(Config(set_driver))
 
-    yield
+    yield browser
 
     attach.add_html(browser)
     attach.add_screenshot(browser)
