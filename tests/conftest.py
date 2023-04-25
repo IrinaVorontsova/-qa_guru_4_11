@@ -36,9 +36,9 @@ def setup_browser(set_selenoid):
     browser.quit()
 
 @pytest.fixture(scope='session', autouse=True)
-def set_selenoid():
+def set_selenoid(request):
     options = Options()
-    browser_version = config.getoption('--browser_version')
+    browser_version = request.config.getoption('--browser_version')
     browser_version = browser_version if browser_version != "" else DEFAULT_BROWSER_VERSION
 
     chrome_capabilities = {
