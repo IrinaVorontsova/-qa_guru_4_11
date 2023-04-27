@@ -8,8 +8,6 @@ class TestPage:
 
     def test_form(self, setup_browser):
         with allure.step("Set user data"):
-
-            print("User is corrected")
             user = FormRegistration(
                 first_name='Антон',
                 last_name='Антонов',
@@ -26,13 +24,11 @@ class TestPage:
                 state='Rajasthan',
                 city='Jaiselmer')
 
-        print(user)
         with allure.step("Initialize form page"):
             registration = RegistrationPage(setup_browser)
 
         with allure.step("Open test urls"):
             registration.open_browser()
-            print("URL is Open")
 
         with allure.step("Transmitted user data"):
             registration.registration_user(user)

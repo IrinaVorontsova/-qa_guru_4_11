@@ -2,9 +2,6 @@ import os
 from locators.page_locators import PageLocators
 from selene import be, have, command
 
-from models.registration_model import FormRegistration
-
-
 class RegistrationPage:
 
     def __init__(self, browser):
@@ -84,17 +81,11 @@ class RegistrationPage:
 
     def registration_user(self, user):
         self._set_first_name(user.first_name)
-        print(user.first_name)
         self._set_last_name(user.last_name)
-        print(user.last_name)
         self._set_email(user.email)
-        print(user.email)
         self._set_gender(user.gender)
-        print(user.gender)
         self._set_phone(user.phone_number)
-        print(user.phone_number)
         self.set_date_birth()
-
         self._set_hobby_one(user.interests)
         self._set_hobby_two(user.hobby)
         self._set_photo(user.photo_path)
