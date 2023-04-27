@@ -5,22 +5,22 @@ from selene import be, have, command
 class RegistrationPage:
 
     def __init__(self, setup_browser):
-        self.browser = setup_browser
-        self.first_name = self.browser.element(PageLocators.first_name)
-        self.last_name = self.browser.element(PageLocators.last_name)
-        self.email = self.browser.element(PageLocators.email)
-        self.gender = self.browser.element(PageLocators.gender_other)
-        self.phone = self.browser.element(PageLocators.phone)
-        self.hobby_one = self.browser.element(PageLocators.hobby_field)
-        self.hobby_two = self.browser.element(PageLocators.hobby_choose)
-        self.photo = self.browser.element(PageLocators.photo)
-        self.address = self.browser.element(PageLocators.address)
-        self.state = self.browser.element(PageLocators.state_choose)
-        self.city = self.browser.element(PageLocators.city_choose)
-        self.submit = self.browser.element(PageLocators.submit)
+        self.setup_browser = setup_browser
+        self.first_name = self.setup_browser.element(PageLocators.first_name)
+        self.last_name = self.setup_browser.element(PageLocators.last_name)
+        self.email = self.setup_browser.element(PageLocators.email)
+        self.gender = self.setup_browser.element(PageLocators.gender_other)
+        self.phone = self.setup_browser.element(PageLocators.phone)
+        self.hobby_one = self.setup_browser.element(PageLocators.hobby_field)
+        self.hobby_two = self.setup_browser.element(PageLocators.hobby_choose)
+        self.photo = self.setup_browser.element(PageLocators.photo)
+        self.address = self.setup_browser.element(PageLocators.address)
+        self.state = self.setup_browser.element(PageLocators.state_choose)
+        self.city = self.setup_browser.element(PageLocators.city_choose)
+        self.submit = self.setup_browser.element(PageLocators.submit)
 
     def open_browser(self):
-        self.browser.open(PageLocators.URL)
+        self.setup_browser.open(PageLocators.URL)
         return self
 
     def _set_first_name(self, first_name):
@@ -44,10 +44,10 @@ class RegistrationPage:
         return self
 
     def set_date_birth(self):
-        self.browser.element(PageLocators.date_birth_field).click()
-        self.browser.element(PageLocators.date_birth_month).click()
-        self.browser.element(PageLocators.date_birth_year).click()
-        self.browser.element(PageLocators.date_birth_day).click()
+        self.setup_browser.element(PageLocators.date_birth_field).click()
+        self.setup_browser.element(PageLocators.date_birth_month).click()
+        self.setup_browser.element(PageLocators.date_birth_year).click()
+        self.setup_browser.element(PageLocators.date_birth_day).click()
 
         return self
 
@@ -100,7 +100,7 @@ class RegistrationPage:
         birthday = user.birth_day + ' ' + user.birth_month + ',' + user.birth_year
         state_city = user.state + ' ' + user.city
 
-        self.browser.element(PageLocators.element_form_one).all(PageLocators.element_form_two).even.should(
+        self.setup_browser.element(PageLocators.element_form_one).all(PageLocators.element_form_two).even.should(
             have.exact_texts(
                 name,
                 user.email,
@@ -114,6 +114,6 @@ class RegistrationPage:
                 state_city
             )
         )
-        self.browser.element(PageLocators.close_form).perform(command.js.click)
+        self.setup_browser.element(PageLocators.close_form).perform(command.js.click)
 
         return self
