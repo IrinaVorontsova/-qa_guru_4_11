@@ -4,20 +4,20 @@ from selene import be, have, command
 
 class RegistrationPage:
 
-    def __init__(self, browser):
-        self.browser = browser
-        self.first_name = browser.element(PageLocators.first_name)
-        self.last_name = browser.element(PageLocators.last_name)
-        self.email = browser.element(PageLocators.email)
-        self.gender = browser.element(PageLocators.gender_other)
-        self.phone = browser.element(PageLocators.phone)
-        self.hobby_one = browser.element(PageLocators.hobby_field)
-        self.hobby_two = browser.element(PageLocators.hobby_choose)
-        self.photo = browser.element(PageLocators.photo)
-        self.address = browser.element(PageLocators.address)
-        self.state = browser.element(PageLocators.state_choose)
-        self.city = browser.element(PageLocators.city_choose)
-        self.submit = browser.element(PageLocators.submit)
+    def __init__(self, setup_browser):
+        self.browser = setup_browser
+        self.first_name = self.browser.element(PageLocators.first_name)
+        self.last_name = self.browser.element(PageLocators.last_name)
+        self.email = self.browser.element(PageLocators.email)
+        self.gender = self.browser.element(PageLocators.gender_other)
+        self.phone = self.browser.element(PageLocators.phone)
+        self.hobby_one = self.browser.element(PageLocators.hobby_field)
+        self.hobby_two = self.browser.element(PageLocators.hobby_choose)
+        self.photo = self.browser.element(PageLocators.photo)
+        self.address = self.browser.element(PageLocators.address)
+        self.state = self.browser.element(PageLocators.state_choose)
+        self.city = self.browser.element(PageLocators.city_choose)
+        self.submit = self.browser.element(PageLocators.submit)
 
     def open_browser(self):
         self.browser.open(PageLocators.URL)
