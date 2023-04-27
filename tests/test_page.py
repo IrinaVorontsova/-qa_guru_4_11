@@ -7,13 +7,9 @@ from pages.registration_page import RegistrationPage
 class TestPage:
 
     def test_form(self, setup_browser):
-        with allure.step("Initialize form page"):
-            registration = RegistrationPage(setup_browser)
-
-        with allure.step("Open URL"):
-            setup_browser.open('https://demoqa.com/automation-practice-form')
-
         with allure.step("Set user data"):
+
+            print("User is corrected")
             user = FormRegistration(
                 first_name='Антон',
                 last_name='Антонов',
@@ -28,13 +24,19 @@ class TestPage:
                 photo_path="photo_test.jpg",
                 address='USA, 12723 street',
                 state='Rajasthan',
-                city='Jaiselmer'
-            )
+                city='Jaiselmer')
+
+        print(user)
+        with allure.step("Initialize form page"):
+            registration = RegistrationPage(setup_browser)
+
+        with allure.step("Open test urls"):
+            registration.open_browser()
+            print("URL is Open")
 
         with allure.step("Transmitted user data"):
-
-            registration.registration_user(user, setup_browser)
+            registration.registration_user(user)
 
         with allure.step("Compare transmitted and real data"):
-            registration.assert_saved_form(user, setup_browser), \
+            registration.assert_saved_form(user), \
                 "Some field was not corrected"

@@ -8,6 +8,8 @@ class PageLocators:
     def set_day_birth(day):
         return f"react-datepicker__day--{day}"
 
+    URL = 'https://demoqa.com/automation-practice-form'
+
     first_name = '#firstName'
     last_name = '#lastName'
     email = '#userEmail'

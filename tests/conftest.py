@@ -2,6 +2,8 @@ import pytest
 from dotenv import load_dotenv
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
+from selene.support.shared import config
+
 from selene import Browser, Config
 import os
 
@@ -18,16 +20,15 @@ def pytest_addoption(parser):
     )
 
 
-@pytest.fixture(scope='session', autouse=True)
+@pytest.fixture(scope='class', autouse=True)
 def load_env():
     load_dotenv()
 
 
-@pytest.fixture(scope='function')
+@pytest.fixture(scope='class')
 def setup_browser(set_driver):
-
+    # browser.config.driver = set_driver
     browser = Browser(Config(set_driver))
-
     yield browser
 
     attach.add_html(browser)
@@ -36,7 +37,7 @@ def setup_browser(set_driver):
     attach.add_video(browser)
     browser.quit()
 
-@pytest.fixture(scope='function')
+@pytest.fixture(scope='class')
 def set_driver(request):
     browser_version = request.config.getoption('--browser_version')
     browser_version = browser_version if browser_version != "" else DEFAULT_BROWSER_VERSION
