@@ -60,7 +60,7 @@ class RegistrationPage:
         return self
 
     def _set_photo(self, photo):
-        self.photo.send_keys(os.getcwd() + "/resources/" + photo)
+        self.photo.send_keys(os.getcwd() + "/tests/resources/" + photo)
         return self
 
     def _set_address(self, address):
