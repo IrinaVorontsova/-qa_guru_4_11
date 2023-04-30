@@ -2,8 +2,6 @@ import pytest
 from dotenv import load_dotenv
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
-from selene.support.shared import config
-
 from selene import Browser, Config
 import os
 
@@ -28,14 +26,14 @@ def load_env():
 @pytest.fixture(scope='class')
 def setup_browser(set_driver):
     # browser.config.driver = set_driver
-    browser = Browser(Config(set_driver))
-    yield browser
+    setup_browser = Browser(Config(set_driver))
+    yield setup_browser
 
-    attach.add_html(browser)
-    attach.add_screenshot(browser)
-    attach.add_logs(browser)
-    attach.add_video(browser)
-    browser.quit()
+    attach.add_html(setup_browser)
+    attach.add_screenshot(setup_browser)
+    attach.add_logs(setup_browser)
+    attach.add_video(setup_browser)
+    setup_browser.quit()
 
 @pytest.fixture(scope='class')
 def set_driver(request):
