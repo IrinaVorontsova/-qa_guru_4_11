@@ -1,9 +1,9 @@
 import pytest
+import os
 from dotenv import load_dotenv
+from selene import browser
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
-from selene import Browser, Config
-import os
 
 from utils import attach
 
@@ -27,6 +27,7 @@ def load_env():
 def setup_browser(request):
     browser_version = request.config.getoption('--browser_version')
     browser_version = browser_version if browser_version != "" else DEFAULT_BROWSER_VERSION
+
     options = Options()
     selenoid_capabilities = {
         "browserName": "chrome",
@@ -45,7 +46,7 @@ def setup_browser(request):
         command_executor=f"https://{login}:{password}@selenoid.autotests.cloud/wd/hub",
         options=options
     )
-    browser = Browser(Config(driver))
+    browser.config.driver = driver
 
     yield browser
 
