@@ -60,7 +60,7 @@ class RegistrationPage:
         return self
 
     def _set_photo(self, photo):
-        self.photo.send_keys(os.getcwd() + "/" + photo)
+        self.photo.send_keys(os.path.dirname(os.getcwd()).replace('\\', '//') + "//resourses//" + photo)
         return self
 
     def _set_address(self, address):
